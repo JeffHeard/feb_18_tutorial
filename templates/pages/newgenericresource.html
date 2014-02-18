@@ -1,0 +1,22 @@
+{% extends "pages/page.html" %}
+{% load geoanalytics_tags pages_tags mezzanine_tags %}
+
+{% block main %}
+    {% set_page_permissions page %}
+
+<div class='row'>
+    {% editable page.newgenericresource.content %}
+       {{ page.newgenericresource.content|safe|richtext_filters }}
+    {% endeditable %}
+</div>
+
+<h4>Download files</h4>
+<div class='row'>
+{% if page.newgenericresource.resource_content %}
+    <a class='btn btn-lg btn-primary' href='{{page.newgenericresource.resource_content.url}}'>{{ page.newgenericresource.resource_content.name }}</a>
+{% endif %}
+</div>
+
+<h4>File Count: {{ page.newgenericresource.resource_file_count }}</h4>
+
+{% endblock %}
